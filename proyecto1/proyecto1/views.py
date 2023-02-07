@@ -14,12 +14,21 @@ def saludo(request): # Primera vista
   """ nombre="Juan"
   apellido="Díaz" """
 
+  temas_del_curso=[
+    
+    ]
+
   ahora=datetime.datetime.now()
   doc_externo=open("/Users/jhonjairoduenasvega/python/django_pildoras/proyecto1/proyecto1/plantillas/plantilla1.html")
   plantilla=Template(doc_externo.read())
   doc_externo.close()
 
-  contexto=Context({"nombre_persona":persona1.nombre, "apellido_persona":persona1.apellido, "momento_actual":ahora})
+  contexto=Context({
+    "nombre_persona":persona1.nombre,
+    "apellido_persona":persona1.apellido,
+    "momento_actual":ahora,
+    "temas":temas_del_curso
+    })
 
   documento=plantilla.render(contexto)
 

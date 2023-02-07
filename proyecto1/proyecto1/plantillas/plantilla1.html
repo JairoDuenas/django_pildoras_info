@@ -8,11 +8,27 @@
 </head>
 <body>
   <h2>Hola alumnos estamos viendo primera plantilla</h2>
-  <p>El nombre del profesor es: {{nombre_persona}} {{apellido_persona}} </p>
+  <p>El nombre del profesor es: {{nombre_persona.upper}} {{apellido_persona.upper}} </p>
   <p>Estamos el tema de las plantillas a día:
     {{momento_actual.day}} /
     {{momento_actual.month}} /
     {{momento_actual.year}}
+  </p>
+  <p>
+    <strong>Temas del curso</strong>
+  </p>
+  <p>
+    <ul>
+      {% if temas %}
+        {% for el_tema in temas %}
+          <li>
+            {{el_tema}}
+          </li>
+        {% endfor %}
+        {% else %}
+          <p>No hay elementos que mostrar</p>
+      {% endif %}
+    </ul>
   </p>
 </body>
 </html>
