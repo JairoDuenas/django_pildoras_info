@@ -1,6 +1,7 @@
 from django.http import HttpResponse
 import datetime
 from django.template import loader
+from django.shortcuts import render
 
 class Persona(object):
   def __init__(self, nombre, apellido):
@@ -11,9 +12,6 @@ def saludo(request): # Primera vista
 
   persona1=Persona("Profesor Juan", "Díaz")
 
-  """ nombre="Juan"
-  apellido="Díaz" """
-
   temas_del_curso=[
     "Plantillas",
     "Modelos",
@@ -23,27 +21,15 @@ def saludo(request): # Primera vista
     ]
 
   ahora=datetime.datetime.now()
-  #doc_externo=open("/Users/jhonjairoduenasvega/python/django_pildoras/proyecto1/proyecto1/plantillas/plantilla1.html")
-  #plantilla=Template(doc_externo.read())
-  #doc_externo.close()
 
-  doc_externo=loader.get_template("plantilla1.html")
-
-  """ contexto=Context({
+  context={
     "nombre_persona":persona1.nombre,
     "apellido_persona":persona1.apellido,
     "momento_actual":ahora,
     "temas":temas_del_curso
-    }) """
+    }
 
-  documento=doc_externo.render({
-    "nombre_persona":persona1.nombre,
-    "apellido_persona":persona1.apellido,
-    "momento_actual":ahora,
-    "temas":temas_del_curso
-    })
-
-  return HttpResponse(documento)
+  return render(request, "plantilla1.html", context)
 
 def despedida(request):
   return HttpResponse("Hasta luego alumnos django")
