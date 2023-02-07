@@ -8,7 +8,20 @@
 </head>
 <body>
   <h2>Hola alumnos estamos viendo primera plantilla</h2>
-  <p>El nombre del profesor es: {{nombre_persona.upper}} {{apellido_persona.upper}} </p>
+
+  {# No temas diseñador, ignora esta parte #}
+  {% comment %}
+    No temas diseñador,
+    ignora esta parte
+  {% endcomment %}
+
+  {% if nombre_persona == 'Profesor Juan' %}
+    <p>El curso lo imparte el profesor Juan</p>
+    {% else %}
+    <p>El curso lo imparte el profesor suplente</p>
+  {% endif %}
+
+  <p>El nombre del profesor es: {{nombre_persona|upper}} {{apellido_persona.lower}} </p>
   <p>Estamos el tema de las plantillas a día:
     {{momento_actual.day}} /
     {{momento_actual.month}} /
@@ -22,7 +35,7 @@
       {% if temas %}
         {% for el_tema in temas %}
           <li>
-            {{el_tema}}
+            {{el_tema|first|lower}}
           </li>
         {% endfor %}
         {% else %}
